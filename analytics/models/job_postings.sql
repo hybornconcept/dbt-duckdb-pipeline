@@ -1,4 +1,5 @@
-SELECT
+{{ config(materialized='view') }}
+select
     job_id,
     job_title,
     company_name,
@@ -7,8 +8,6 @@ SELECT
     job_schedule_type,
     job_work_from_home,
     search_date,
-    search_term,
-FROM
-    '../data/raw/raw_job_postings_*.parquet'
-WHERE
-    error IS NULL
+    search_term
+from {{ source('raw', 'job_postings') }}
+where error is null

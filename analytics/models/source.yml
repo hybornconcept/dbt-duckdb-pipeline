@@ -1,0 +1,9 @@
+
+sources:
+  - name: raw
+    schema: main
+    tables:
+      - name: job_postings
+        description: "one row per job-posting scrape, raw from pipeline."
+        config:
+          external_location: "read_parquet('../data/raw/raw_job_postings_*.parquet')"
